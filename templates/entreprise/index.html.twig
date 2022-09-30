@@ -45,7 +45,7 @@
           <a href="{{ path('salarie_edit', {id: salaries.id}) }}">
               <img src="assets/img/edit.png" alt="" width="20px">
           </a>
-          <a href="{{ path('salarie_delete', {id: salaries.id}) }}">
+          <a  onclick="return confirm('Voulez-vous supprimer?')" href="{{ path('salarie_delete', {id: salaries.id}) }}">
               <img src="assets/img/delete.png" alt="" width="20px">
           </a>
         </td>
