@@ -1,0 +1,137 @@
+{% extends 'base.html.twig' %}
+{% block title %}Entreprise{% endblock %}
+
+{% block body %}
+    <div  class="container m-2 bg-info">
+      {% if editMode %}
+        Vous êtes dans: Modification !!!
+      {% else %}
+        Vous êtes dans: Vue d'enssemble
+      {% endif %}
+    </div>
+
+  <div class="container border">
+  <section class="row">
+  <table class="table">
+    <thead>
+      <tr>
+          <th>#</th>
+          <th>Prénom</th>
+          <th>Nom</th>
+          <th>Telephone</th>
+          <th>E-mail</th>
+          <th>Adresse</th>
+          <th>Poste</th>
+          <th>Salaire</th>
+          <th>Date de naissance</th>
+          <th>Option</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for salaries in salaries %}
+      <tr>
+        <td>{{ salaries.id }}</td>
+        <td>{{ salaries.prenom }}</td>
+        <td>{{ salaries.nom }}</td>
+        <td>{{ salaries.telephone }}</td>
+        <td>{{ salaries.email }}</td>
+        <td>{{ salaries.adresse }}</td>
+        <td>{{ salaries.poste }}</td>
+        <td>{{ salaries.salaire }}</td>
+        <td>{{ salaries.datedenaissance|date('d/m/Y') }}</td>
+        <td>
+        <a href="{{ path('salarie_edit', {id: salaries.id}) }}">
+            <img src="assets/img/edit.png" alt="" width="20px">
+        </a>
+        <a  onclick="return confirm('Voulez-vous supprimer?')" href="{{ path('salarie_delete', {id: salaries.id}) }}">
+            <img src="assets/img/delete.png" alt="" width="20px">
+        </a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <hr>
+  {{ form_start(form, {
+  attr: {
+    novalidate: 'novalidate'
+  }
+  }) }}
+  <div class="container row m-1">
+    <div class="col">
+      {{ form_row(form.prenom, {
+      label: "Prénom",
+      attr: {
+        placeholder: "Prénom"
+      }
+    }) }}
+    </div>
+    <div class="col">
+      {{ form_row(form.nom, {
+      label: "Nom",
+      attr: {
+        placeholder: "Nom"
+      }
+    }) }}
+    </div>
+    <div class="col">
+      {{ form_row(form.telephone, {
+      label: "Téléphone",
+      attr: {
+        placeholder: "Numéro de téléphone"
+      }
+    }) }}
+    </div>
+    <div class="col">
+      {{ form_row(form.email, {
+      label: "E-mail",
+      attr: {
+        placeholder: "Adresse E-mail"
+      }
+    }) }}
+    </div>
+  </div>
+  <div class="container row m-1 mb-3">
+    <div class="col">
+      {{ form_row(form.adresse, {
+      label: "Adresse",
+      attr: {
+        placeholder: "Adresse"
+      }
+    }) }}
+    </div>
+    <div class="col">
+      {{ form_row(form.poste, {
+      label: "Poste",
+      attr: {
+        placeholder: "Poste"
+      }
+    }) }}
+    </div>
+    <div class="col">
+      {{ form_row(form.salaire, {
+      label: "Salaire",
+      attr: {
+        placeholder: "Salaire"
+      }
+    }) }}
+    </div>
+    <div class="col">
+      {{ form_row(form.datedenaissance, {
+      label: "Date de naissance"
+      }) }}
+    </div>
+    <div class="col">
+    <button type="submit" class="btn btn-primary mt-2 mb-2">
+      {% if editMode %}
+        Enregistrer les modifications
+      {% else %}
+        Créer ce compte
+      {% endif %}
+    </button>
+    </div>
+  </div>
+  {{ form_end(form) }} 
+  </section>
+  </div>
+{% endblock %}
