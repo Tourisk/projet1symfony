@@ -2,15 +2,17 @@
 {% block title %}Entreprise{% endblock %}
 
 {% block body %}
-    <div  class="container m-2 bg-info">
-      {% if editMode %}
-        Vous êtes dans: Modification !!!
-      {% else %}
-        Vous êtes dans: Vue d'enssemble
-      {% endif %}
-    </div>
 
   <div class="container border">
+       {% if editMode %}
+      <div  class="container m-2 bg-warning">
+        Vous êtes dans: Modification !!!
+      </div>
+      {% else %}
+      <div  class="container m-2 bg-info">
+        Vous êtes dans: Vue d'enssemble
+      </div>
+      {% endif %}
   <section class="row">
   <table class="table">
     <thead>
@@ -40,15 +42,15 @@
         <td>{{ salaries.salaire }}</td>
         <td>{{ salaries.datedenaissance|date('d/m/Y') }}</td>
         <td>
-        <a href="{{ path('salarie_edit', {id: salaries.id}) }}">
-            <img src="assets/img/edit.png" alt="" width="20px">
-        </a>
-        <a  onclick="return confirm('Voulez-vous supprimer?')" href="{{ path('salarie_delete', {id: salaries.id}) }}">
-            <img src="assets/img/delete.png" alt="" width="20px">
-        </a>
+          <a href="{{ path('salarie_edit', {id: salaries.id}) }}">
+              <img src="assets/img/edit.png" alt="" width="20px">
+          </a>
+          <a  onclick="return confirm('Voulez-vous supprimer?')" href="{{ path('salarie_delete', {id: salaries.id}) }}">
+              <img src="assets/img/delete.png" alt="" width="20px">
+          </a>
         </td>
       </tr>
-      {% endfor %}
+    {% endfor %}
     </tbody>
   </table>
   <hr>
@@ -58,7 +60,8 @@
       {{ form_row(form.prenom, {
       label: "Prénom",
       attr: {
-        placeholder: "Prénom"
+        placeholder: "Prénom",
+        message:"need"
       }
     }) }}
     </div>
@@ -118,13 +121,15 @@
       }) }}
     </div>
     <div class="col">
-    <button type="submit" class="btn btn-primary mt-2 mb-2">
       {% if editMode %}
+    <button type="submit" class="btn btn-warning mt-2 mb-2">
         Enregistrer les modifications
+      </button>
       {% else %}
+    <button type="submit" class="btn btn-info mt-2 mb-2">
         Créer ce compte
+      </button>
       {% endif %}
-    </button>
     </div>
   </div>
   {{ form_end(form) }} 

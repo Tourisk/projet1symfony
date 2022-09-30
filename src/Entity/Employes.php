@@ -35,7 +35,7 @@ class Employes
     #[ORM\Column(length: 255)]
     private ?string $salaire = null;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $datedenaissance = null;
 
     public function getId(): ?int

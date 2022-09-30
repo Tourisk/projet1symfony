@@ -25,7 +25,7 @@ class EmployesType extends AbstractType
                     'year'=> 'Année',
                     'month'=> 'Mois',
                     'day'=> 'Jour'], 
-                    "years"=> range(1950, 2020)
+                    "years"=> range(1920, 2020)
             ]);
     }
 
