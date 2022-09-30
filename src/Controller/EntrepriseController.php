@@ -44,7 +44,7 @@ public function index(EmployesRepository $repo, Request $globals, EntityManagerI
     ]);
 }
 //---------------------------------------------------------------------------------------------------------------------------------------
-#[Route('/entreprise/{id}', name: 'salarie_delete')]
+#[Route('/entreprise/delete/{id}', name: 'salarie_delete')]
 public function delete ($id, Employes $salarie, EntityManagerInterface $manager, EmployesRepository $repo): Response
 {
     $salarie=$repo->find($id);
